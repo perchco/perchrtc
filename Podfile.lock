@@ -1,0 +1,37 @@
+PODS:
+  - AFNetworking/Reachability (2.5.0)
+  - CocoaLumberjack (1.9.1):
+    - CocoaLumberjack/Extensions (= 1.9.1)
+  - CocoaLumberjack/Core (1.9.1)
+  - CocoaLumberjack/Extensions (1.9.1):
+    - CocoaLumberjack/Core
+  - nighthawk-webrtc (8444)
+  - SocketRocket (0.3.1-beta2)
+  - XirSys (0.2)
+
+DEPENDENCIES:
+  - AFNetworking/Reachability
+  - CocoaLumberjack
+  - nighthawk-webrtc (from `./nighthawk-webrtc-8444.podspec`)
+  - SocketRocket (= 0.3.1-beta2)
+  - XirSys (from `https://github.com/samsymons/XirSys.git`)
+
+EXTERNAL SOURCES:
+  nighthawk-webrtc:
+    :podspec: ./nighthawk-webrtc-8444.podspec
+  XirSys:
+    :git: https://github.com/samsymons/XirSys.git
+
+CHECKOUT OPTIONS:
+  XirSys:
+    :commit: 53f661de87c3d81e296a360c98a292c9c18f05f1
+    :git: https://github.com/samsymons/XirSys.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  CocoaLumberjack: e9b828e64142be63c1c130517b33aa5e235d2413
+  nighthawk-webrtc: c83bf704e3a009c5a45293d0ed8644ad12af6927
+  SocketRocket: 7284ab9370a06c99aba92b2fe3a32aedd0f9a6fa
+  XirSys: a1e8290a2014139b027155c464348e3a8d77d6bb
+
+COCOAPODS: 0.35.0
