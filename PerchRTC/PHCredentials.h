@@ -12,14 +12,14 @@
 #error Please enter your XirSys credentials (http://xirsys.com/pricing/)
 
 static NSString *kPHConnectionManagerDomain = @"";
-static NSString *kPHConnectionManagerApplication = @"";
+static NSString *kPHConnectionManagerApplication = @"default";
 static NSString *kPHConnectionManagerXSUsername = @"";
 static NSString *kPHConnectionManagerXSSecretKey = @"";
 
 #ifdef DEBUG
-static NSString *kPHConnectionManagerDefaultRoomName = @"";
+static NSString *kPHConnectionManagerDefaultRoomName = @"default";
 #else
-static NSString *kPHConnectionManagerDefaultRoomName = @"";
+static NSString *kPHConnectionManagerDefaultRoomName = @"default";
 #endif
 
 #endif
