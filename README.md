@@ -142,7 +142,7 @@ XSPeerClient performs the role of signaling client, establishing a WebSocket con
 @end
 ```
 
-For a more in depth discussion of the sample code please visit our [PerchRTC blog series](https://perch.co/blog/).
+For a more in depth discussion of the sample code please visit our [PerchRTC blog series](https://perch.co/blog/perchrtc-released/).
 
 ## WebRTC Build Notes
 
