@@ -15,7 +15,7 @@ This iOS sample demonstrates multi-party video conferencing using WebRTC and the
 
 ## Installation
 
-PerchRTC uses [CocoaPods](https://cocoapods.org/) 0.35 to install its dependencies.
+PerchRTC uses [CocoaPods](https://cocoapods.org/) 0.37.1 to install its dependencies.
 
 To get started, clone the repo and install its dependencies:
 

@@ -18,7 +18,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   nighthawk-webrtc:
-    :podspec: ./nighthawk-webrtc-8444.podspec
+    :podspec: "./nighthawk-webrtc-8444.podspec"
   XirSys:
     :git: https://github.com/samsymons/XirSys.git
 
@@ -30,8 +30,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
   CocoaLumberjack: e9b828e64142be63c1c130517b33aa5e235d2413
-  nighthawk-webrtc: c83bf704e3a009c5a45293d0ed8644ad12af6927
+  nighthawk-webrtc: 7285cac5002b28c2cbdc82a0d896e06391269965
   SocketRocket: 7284ab9370a06c99aba92b2fe3a32aedd0f9a6fa
-  XirSys: a1e8290a2014139b027155c464348e3a8d77d6bb
+  XirSys: b6184f2667e4b12fa92348f7a1987757087e5cfe
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.1
