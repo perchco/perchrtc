@@ -9,9 +9,11 @@ This iOS sample demonstrates multi-party video conferencing using WebRTC and the
 * Includes `XSPeerClient`, a websocket signaling client. (to be migrated to the XirSys project)
 * Includes `PHQuartzVideoView`, a video renderer which uses a CALayer to display CGImages.
 * Includes `PHSampleBufferRenderer` & `PHSampleBufferView` which render video using AVSampleBufferDisplayLayer.
+* An AVFoundation based capture pipeline with device controls and flexible capture format support.
+* A custom C++ cricket::VideoCapturer to interface with WebRTC.
+* Basic support for camera rotation & audio muting.
 * iOS simulator can receive both audio & video, and transmit audio.
 * iOS devices support full duplex audio & video using the front camera.
-* Basic support for camera rotation & audio muting.
 
 ## Installation
 
