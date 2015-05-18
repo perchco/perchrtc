@@ -134,7 +134,7 @@ static NSUInteger PHSampleBufferAdaptorDropThreshold = 2;
 - (void)restoreFailedSampleView
 {
     UIView *lastSuperview = self.sampleView.superview;
-    NSUInteger lastIndex = [lastSuperview.subviews indexOfObject:lastSuperview];
+    NSUInteger lastIndex = [lastSuperview.subviews indexOfObject:self.sampleView];
     CGRect lastFrame = self.sampleView.frame;
     CGAffineTransform lastTransform = self.sampleView.transform;
 
