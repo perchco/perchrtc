@@ -37,6 +37,7 @@
 @import AVFoundation;
 
 static NSUInteger kPHConnectionManagerMaxIceAttempts = 3;
+static NSUInteger kPHConnectionManagerMaxWebSocketAuthAttempts = 3;
 
 // This is the maximum number of remote peers allowed in the room, not including yourself.
 // In this case we only allow 3 people in one room.
@@ -59,6 +60,7 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
 #endif
 
 @property (nonatomic, strong) AFNetworkReachabilityManager *reachability;
+@property (nonatomic, assign) NSUInteger retryCount;
 
 @property (nonatomic, strong) NSURLSessionDataTask *socketTokenTask;
 @property (nonatomic, strong) NSURLSessionDataTask *iceServersTask;
@@ -186,6 +188,11 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
     __weak typeof(self) weakSelf = self;
 
     [self.reachability setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+
+        if (weakSelf.reachability.isReachable) {
+            weakSelf.retryCount = 0;
+        }
+
         [weakSelf checkAuthorizationStatus];
     }];
 
@@ -211,6 +218,8 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
         });
     };
 
+    self.retryCount++;
+
     self.socketTokenTask = [self.apiClient getTokenForDomain:kPHConnectionManagerDomain
                                                  application:kPHConnectionManagerApplication
                                                         room:self.room.name
@@ -224,9 +233,13 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
     BOOL isAuthorized = [self.room.authToken length] > 0;
     BOOL authorizationInProgress = self.socketTokenTask != nil;
     BOOL isReachable = self.reachability.isReachable;
+    BOOL retryAllowed = self.retryCount < kPHConnectionManagerMaxWebSocketAuthAttempts;
 
-    if (!isAuthorized && !authorizationInProgress && isReachable) {
+    if (!isAuthorized && !authorizationInProgress && isReachable && retryAllowed) {
         [self authorizePeerClient];
+    }
+    else if (!retryAllowed) {
+        DDLogVerbose(@"Too many retry attempts!");
     }
 }
 
@@ -319,6 +332,8 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
     self.socketTokenTask = nil;
 
     self.apiClient = nil;
+
+    self.retryCount = 0;
 }
 
 - (void)teardownReachability
@@ -601,19 +616,23 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
 - (void)clientDidConnect:(XSPeerClient *)client
 {
     // Wait for join event to come. Potentially inform our delegate of signaling connection status?
+
+    self.retryCount = 0;
 }
 
 - (void)clientDidDisconnect:(XSPeerClient *)client
 {
     // If this was a final disconnection, let our delegate know.
+    // If we can reconnect, start now otherwise wait for reachability to return.
 
     if (!self.apiClient) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.delegate connectionBrokerDidFinish:self];
         });
     }
-
-    // Wait for reachability to re-authorize the connection.
+    else {
+        [self checkAuthorizationStatus];
+    }
 }
 
 - (void)client:(XSPeerClient *)client didEncounterError:(NSError *)error
