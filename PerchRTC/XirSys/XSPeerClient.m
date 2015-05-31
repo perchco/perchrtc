@@ -19,7 +19,7 @@ static NSString *kPHConnectionManagerXSWebSocketAddress = @"wss://api.xirsys.com
 /**
  *  XirSys requires a keepalive for presence. The timing constant is taken from their Rails Demo.
  */
-static NSTimeInterval kXSPeerClientKeepaliveInterval = 5.0;
+static NSTimeInterval kXSPeerClientKeepaliveInterval = 20.0;
 
 @interface XSPeerClient() <SRWebSocketDelegate>
 
