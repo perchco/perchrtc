@@ -193,15 +193,7 @@ static NSTimeInterval kXSPeerClientKeepaliveInterval = 5.0;
 
 - (void)sendPing
 {
-    NSDictionary *messageDictionary = @{};
-    NSError *jsonError = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:messageDictionary
-                                                   options:0
-                                                     error:&jsonError];
-
-    if (!jsonError) {
-        [self.negotiationSocket send:data];
-    }
+    [self.negotiationSocket sendPing:nil];
 }
 
 - (void)applicationWillEnterForeground
