@@ -205,16 +205,20 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
 
     XSObjectCompletion socketTokenHandler = ^(id object, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.socketTokenTask = nil;
+
             if (!error) {
                 NSString *token = [self parseSocketCredentials:object];
                 [self.room authorizeWithToken:token];
                 [self.peerClient connect];
             }
-            else {
+            else if (error.code != NSURLErrorCancelled) {
                 [self.delegate connectionBroker:self didFailWithError:error];
+                [self checkAuthorizationStatus];
             }
-
-            self.socketTokenTask = nil;
+            else {
+                DDLogVerbose(@"Cancelled peer client authorization.");
+            }
         });
     };
 
