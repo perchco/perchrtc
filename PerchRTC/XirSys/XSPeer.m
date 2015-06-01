@@ -31,4 +31,18 @@
     return [NSString stringWithFormat:@"<%@: %@>", NSStringFromClass([self class]), self.identifier];
 }
 
+- (BOOL)isEqual:(XSPeer *)object
+{
+    if ([object isKindOfClass:[XSPeer class]]) {
+        return [object.identifier isEqualToString:self.identifier];
+    }
+
+    return NO;
+}
+
+- (NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end
