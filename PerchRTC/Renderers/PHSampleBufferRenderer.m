@@ -134,7 +134,9 @@ static NSUInteger PHSampleBufferAdaptorDropThreshold = 2;
 - (void)restoreFailedSampleView
 {
     UIView *lastSuperview = self.sampleView.superview;
-    NSUInteger lastIndex = [lastSuperview.subviews indexOfObject:lastSuperview];
+    NSArray *lastSubviews = self.sampleView.subviews;
+    NSArray *lastGestureRecognizers = self.sampleView.gestureRecognizers;
+    NSUInteger lastIndex = [lastSuperview.subviews indexOfObject:self.sampleView];
     CGRect lastFrame = self.sampleView.frame;
     CGAffineTransform lastTransform = self.sampleView.transform;
 
@@ -147,6 +149,14 @@ static NSUInteger PHSampleBufferAdaptorDropThreshold = 2;
     [self.sampleView addObserver:self forKeyPath:@"layer.status" options:NSKeyValueObservingOptionNew context:NULL];
 
     [lastSuperview insertSubview:self.sampleView atIndex:lastIndex];
+
+    [lastSubviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
+        [self.sampleView addSubview:subview];
+    }];
+
+    [lastGestureRecognizers enumerateObjectsUsingBlock:^(UIGestureRecognizer *recognizer, NSUInteger idx, BOOL *stop) {
+        [self.sampleView addGestureRecognizer:recognizer];
+    }];
 }
 
 - (void)destroyConverters
