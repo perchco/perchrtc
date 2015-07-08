@@ -75,6 +75,8 @@ static NSUInteger PHSampleBufferAdaptorDropThreshold = 2;
     if ([keyPath isEqual:@"layer.status"]) {
         AVSampleBufferDisplayLayer *displayLayer = (AVSampleBufferDisplayLayer *)self.sampleView.layer;
         DDLogDebug(@"Layer status changed to: %ld", (long)displayLayer.status);
+
+        [self restoreFailedSampleViewIfForegrounded];
     }
 }
 
@@ -110,6 +112,15 @@ static NSUInteger PHSampleBufferAdaptorDropThreshold = 2;
     self.renderingPaused = NO;
 }
 
+- (void)restoreFailedSampleViewIfForegrounded
+{
+    AVSampleBufferDisplayLayer *displayLayer = (AVSampleBufferDisplayLayer *)self.sampleView.layer;
+
+    if (displayLayer.status == AVQueuedSampleBufferRenderingStatusFailed && [UIApplication sharedApplication].applicationState != UIApplicationStateBackground) {
+        [self restoreFailedSampleView];
+    }
+}
+
 - (void)commonSetup
 {
     PHFrameConverterOutput output = _output;
@@ -141,6 +152,15 @@ static NSUInteger PHSampleBufferAdaptorDropThreshold = 2;
     CGAffineTransform lastTransform = self.sampleView.transform;
 
     [self.sampleView flush];
+
+    // In versions prior to iOS 8.3, flushing the layer does not restore it to AVQueuedSampleBufferRenderingStatusUnknown.
+
+    BOOL needsWorkaround = [[[UIDevice currentDevice] systemVersion] compare:@"8.3" options:NSNumericSearch] == NSOrderedAscending;
+
+    if (!needsWorkaround) {
+        return;
+    }
+
     [self.sampleView removeFromSuperview];
 
     [self.sampleView removeObserver:self forKeyPath:@"layer.status"];
