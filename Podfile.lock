@@ -14,7 +14,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - nighthawk-webrtc (from `./nighthawk-webrtc-8444.podspec`)
   - SocketRocket (from `https://github.com/square/SocketRocket.git`)
-  - XirSys (from `https://github.com/samsymons/XirSys.git`, tag `0.3`)
+  - XirSys (from `https://github.com/samsymons/XirSys.git`, branch `feature/xirsys-v2`)
 
 EXTERNAL SOURCES:
   nighthawk-webrtc:
@@ -22,16 +22,16 @@ EXTERNAL SOURCES:
   SocketRocket:
     :git: https://github.com/square/SocketRocket.git
   XirSys:
+    :branch: feature/xirsys-v2
     :git: https://github.com/samsymons/XirSys.git
-    :tag: '0.3'
 
 CHECKOUT OPTIONS:
   SocketRocket:
     :commit: d1e796c05a8b6dfa662a7cf3cfdce17d0d88c618
     :git: https://github.com/square/SocketRocket.git
   XirSys:
+    :commit: a8c51827a9cca46a3b2f65fa4702b754998c3d6b
     :git: https://github.com/samsymons/XirSys.git
-    :tag: '0.3'
 
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
@@ -40,4 +40,4 @@ SPEC CHECKSUMS:
   SocketRocket: 70df1983148525857ced17c57207bfb939bc6b8e
   XirSys: 542a6e665b875fd01d519a09a11455b9fd42a556
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.37.2
