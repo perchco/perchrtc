@@ -14,7 +14,7 @@
 
 #import <SocketRocket/SRWebSocket.h>
 
-static NSString *kPHConnectionManagerXSWebSocketAddress = @"wss://api.xirsys.com:443";
+static NSString *XSWebSocketAddress = @"wss://endpoint01.uswest.xirsys.com:449";
 
 /**
  *  XirSys requires a keepalive for presence. The timing constant is taken from their Rails Demo.
@@ -100,13 +100,15 @@ static NSTimeInterval kXSPeerClientKeepaliveInterval = 20.0;
         return;
     }
 
-    NSURL *url = [NSURL URLWithString:kPHConnectionManagerXSWebSocketAddress];
+    // TODO: Dynamically fetch Websocket Address.
+
+    NSURL *url = [NSURL URLWithString:XSWebSocketAddress];
 
     DDLogInfo(@"Opening socket to: %@ with room: %@", url, room);
 
     NSString *token = room.authToken;
     NSString *escapedToken = [token stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *authorizedURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"ws/%@", escapedToken]];
+    NSURL *authorizedURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"/ws/%@", escapedToken]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:authorizedURL];
 
     SRWebSocket *socket = [[SRWebSocket alloc] initWithURLRequest:request];
