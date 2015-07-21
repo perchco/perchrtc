@@ -17,7 +17,7 @@ This iOS sample demonstrates multi-party video conferencing using WebRTC and the
 
 ## Installation
 
-PerchRTC uses [CocoaPods](https://cocoapods.org/) 0.37.1 to install its dependencies.
+PerchRTC uses [CocoaPods](https://cocoapods.org/) 0.37.2 to install its dependencies.
 
 To get started, clone the repo and install its dependencies:
 
@@ -33,6 +33,8 @@ This demo assumes a single XirSys room, domain, and application. Here's how to c
 2. Accept the activation email, and sign in to your account.
 3. Configure your application, domain, and room in the dashboard.
 4. Enter your credentials, including the room name, in `PHCredentials.h`.
+
+Only XirSys v2 accounts are supported. If you wish to use PerchRTC with a XirSys v1 account, please try the 0.1 tag.
 
 ## Usage
 

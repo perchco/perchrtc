@@ -146,8 +146,14 @@
         NSString *userId = message.senderId;
         if ([userId isKindOfClass:[NSString class]]) {
             XSPeer *peer = [[XSPeer alloc] initWithId:(NSString *)userId];
-            self.mutableRoomPeers[peer.identifier] = peer;
-            [self informObserverPeerAdded:peer];
+
+            if (![peer isEqual:self.localPeer]) {
+                self.mutableRoomPeers[peer.identifier] = peer;
+                [self informObserverPeerAdded:peer];
+            }
+            else {
+                // TODO: Grab room key for future message sends.
+            }
         }
     }
     else if ([type isEqualToString:kXSMessageRoomLeave]) {
@@ -170,12 +176,16 @@
         // Create XSPeers
         for (NSDictionary *peerDictionary in users) {
 
+            XSPeer *peer = nil;
+
             if ([peerDictionary isKindOfClass:[NSDictionary class]]) {
-                XSPeer *peer = [[XSPeer alloc] initWithJSON:peerDictionary];
-                self.mutableRoomPeers[peer.identifier] = peer;
+                peer = [[XSPeer alloc] initWithJSON:peerDictionary];
             }
             else if ([peerDictionary isKindOfClass:[NSString class]]) {
-                XSPeer *peer = [[XSPeer alloc] initWithId:(NSString *)peerDictionary];
+                peer = [[XSPeer alloc] initWithId:(NSString *)peerDictionary];
+            }
+
+            if (![peer isEqual:self.localPeer]) {
                 self.mutableRoomPeers[peer.identifier] = peer;
             }
         }

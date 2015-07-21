@@ -36,10 +36,10 @@ NSString * const kXSMessageRoomUsersUpdateDataKey = @"users";
 
 // Peer message event types.
 
-NSString * const kXSMessageEventICE = @"receiveice";
-NSString * const kXSMessageEventOffer = @"receiveoffer";
-NSString * const kXSMessageEventAnswer = @"receiveanswer";
-NSString * const kXSMessageEventBye = @"receivebye";
+NSString * const kXSMessageEventICE = @"ice";
+NSString * const kXSMessageEventOffer = @"offer";
+NSString * const kXSMessageEventAnswer = @"answer";
+NSString * const kXSMessageEventBye = @"bye";
 
 // Peer message payloads.
 
