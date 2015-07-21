@@ -438,6 +438,7 @@ void dataProviderReleaseCallback(void *info, const void *data, size_t size)
     CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)info;
 
     if (pixelBuffer != NULL) {
+        CVPixelBufferUnlockBaseAddress(pixelBuffer, kCVPixelBufferLock_ReadOnly);
         CVPixelBufferRelease(pixelBuffer);
     }
     else {
@@ -468,9 +469,6 @@ void dataProviderReleaseCallback(void *info, const void *data, size_t size)
     CFIndex totalBytes = rowBytes * height;
     void *bytes = CVPixelBufferGetBaseAddress(imageBuffer);
 
-    // Unlock
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-
     CGDataProviderRef provider = CGDataProviderCreateWithData(imageBuffer, bytes, totalBytes, dataProviderReleaseCallback);
 
     image = CGImageCreate(width,
@@ -486,7 +484,7 @@ void dataProviderReleaseCallback(void *info, const void *data, size_t size)
                           kCGRenderingIntentDefault);
 
     CGDataProviderRelease(provider);
-    CFRelease(colorSpace);
+    CGColorSpaceRelease(colorSpace);
 
     return image;
 }
