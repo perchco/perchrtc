@@ -19,11 +19,14 @@
 #include "webrtc/modules/video_capture/include/video_capture_factory.h"
 #endif
 
+#include "webrtc/base/bind.h"
+
 using std::endl;
 
 namespace perch {
 
     VideoCapturerKit::VideoCapturerKit()
+    : _startThread(nullptr)
     {
         _initialTimestamp = time(NULL) * rtc::kNumNanosecsPerSec;
         _nextTimestamp = rtc::kNumNanosecsPerMillisec;
@@ -50,6 +53,11 @@ namespace perch {
                 return capture_state();
             }
 
+            // Keep track of which thread capture started on. This is the thread that
+            // frames need to be sent to.
+            DCHECK(!_startThread);
+            _startThread = rtc::Thread::Current();
+
             _frameDuration = capture_format.interval;
 
             [_captureHandler prepareForCapture];
@@ -70,6 +78,7 @@ namespace perch {
             [_captureHandler stopCapturing];
 
             SetCaptureFormat(NULL);
+            _startThread = nullptr;
             SetCaptureState(cricket::CS_STOPPED);
             return;
         } catch (...) {}
@@ -125,7 +134,13 @@ namespace perch {
         _planarFrame.width = (int)width;
         _planarFrame.height = (int)yPlaneHeight;
 
-        SignalFrameCaptured(this, &_planarFrame);
+        if (_startThread->IsCurrent()) {
+            SignalFrameCaptured(this, &_planarFrame);
+        } else {
+            _startThread->Invoke<void>(
+                                       rtc::Bind(&VideoCapturerKit::SignalFrameCapturedOnStartThread,
+                                                 this, &_planarFrame));
+        }
 
 #else
         int frameSize = yPlaneBytesPerRow * yPlaneHeight + uvPlaneBytesPerRow * uvPlaneHeight;
@@ -138,13 +153,25 @@ namespace perch {
         frame.time_stamp = timestamp;
         frame.elapsed_time = _nextTimestamp;
 
-        SignalFrameCaptured(this, &frame);
+        if (_startThread->IsCurrent()) {
+            SignalFrameCaptured(this, &frame);
+        } else {
+            _startThread->Invoke<void>(
+                                       rtc::Bind(&VideoCapturerKit::SignalFrameCapturedOnStartThread,
+                                                 this, &frame));
+        }
 
         CVPixelBufferUnlockBaseAddress(videoFrame, kCVPixelBufferLock_ReadOnly);
 
 #endif
         _nextTimestamp += _frameDuration;
 
+    }
+
+    void VideoCapturerKit::SignalFrameCapturedOnStartThread(const cricket::CapturedFrame* frame)
+    {
+        DCHECK(_startThread->IsCurrent());
+        SignalFrameCaptured(this, frame);
     }
 
     void VideoCapturerKit::HandleDroppedFrame(CMSampleBufferRef droppedFrame)

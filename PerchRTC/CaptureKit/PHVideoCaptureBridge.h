@@ -38,6 +38,7 @@ namespace perch {
 
         void CopyCapturedFrame(CMSampleBufferRef incomingFrame);
         void HandleDroppedFrame(CMSampleBufferRef droppedFrame);
+        void SignalFrameCapturedOnStartThread(const cricket::CapturedFrame* frame);
 
         // cricket::VideoCapturer implementation.
 
@@ -50,6 +51,7 @@ namespace perch {
         bool IsScreencast() const override;
         
     private:
+        rtc::Thread* _startThread;  // Set in Start(), unset in Stop().
         id<PHVideoCapture> _captureHandler;
         PHVideoCaptureKit *_owner;
         int64 _initialTimestamp;
