@@ -21,6 +21,8 @@
 
 #include "webrtc/base/bind.h"
 
+static BOOL VideoCaptureKitUsePooledMemory = YES;
+
 using std::endl;
 
 namespace perch {
@@ -32,7 +34,12 @@ namespace perch {
         _nextTimestamp = rtc::kNumNanosecsPerMillisec;
 
 #ifdef HAVE_WEBRTC_VIDEO
-        set_frame_factory(new cricket::WebRtcVideoFrameFactory());
+        if (VideoCaptureKitUsePooledMemory) {
+            set_frame_factory(new cricket::WebRtcPooledVideoFrameFactory());
+        }
+        else {
+            set_frame_factory(new cricket::WebRtcVideoFrameFactory());
+        }
 #endif
     }
 
@@ -89,16 +96,11 @@ namespace perch {
     {
         CVPixelBufferRef videoFrame = CMSampleBufferGetImageBuffer(incomingBuffer);
 
-        CVPixelBufferLockBaseAddress(videoFrame, kCVPixelBufferLock_ReadOnly);
-
         const int kYPlaneIndex = 0;
         const int kUVPlaneIndex = 1;
 
-        uint8_t *baseAddress = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(videoFrame, kYPlaneIndex);
-        size_t yPlaneBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(videoFrame, kYPlaneIndex);
+        size_t width = CVPixelBufferGetWidthOfPlane(videoFrame, kYPlaneIndex);
         size_t yPlaneHeight = CVPixelBufferGetHeightOfPlane(videoFrame, kYPlaneIndex);
-        size_t uvPlaneBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(videoFrame, kUVPlaneIndex);
-        size_t uvPlaneHeight = CVPixelBufferGetHeightOfPlane(videoFrame, kUVPlaneIndex);
         CMSampleTimingInfo info;
         CMSampleBufferGetSampleTimingInfo(incomingBuffer, 0, &info);
         int64 timestamp = CMTimeGetSeconds(info.presentationTimeStamp) * rtc::kNumNanosecsPerSec;
@@ -111,28 +113,45 @@ namespace perch {
         // Format Conversion
 
 #if 1
-        uint8_t *uvAddress = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(videoFrame, kUVPlaneIndex);
-        size_t width = CVPixelBufferGetWidthOfPlane(videoFrame, kYPlaneIndex);
-        size_t chromaWidth = CVPixelBufferGetWidthOfPlane(videoFrame, kUVPlaneIndex);
-        size_t ySize = (size_t)(width * yPlaneHeight);
-        size_t uSize = (size_t)(chromaWidth * uvPlaneHeight);
-        uint8 *yBuffer = (uint8 *)_planarFrame.data;
-        uint8 *uBuffer = &yBuffer[ySize];
-        uint8 *vBuffer = &yBuffer[ySize + uSize];
-
-        libyuv::NV12ToI420(baseAddress, (int)yPlaneBytesPerRow,
-                           uvAddress, (int)uvPlaneBytesPerRow,
-                           yBuffer, (int)width,
-                           uBuffer, (int)chromaWidth,
-                           vBuffer, (int)chromaWidth,
-                           (int)width, (int)yPlaneHeight);
-
-        CVPixelBufferUnlockBaseAddress(videoFrame, kCVPixelBufferLock_ReadOnly);
-
         _planarFrame.time_stamp = timestamp;
         _planarFrame.elapsed_time = _nextTimestamp;
         _planarFrame.width = (int)width;
         _planarFrame.height = (int)yPlaneHeight;
+
+        if (VideoCaptureKitUsePooledMemory) {
+            // Our pooled frame factory will convert the buffer, locking as needed.
+
+            _planarFrame.nativeHandle = incomingBuffer;
+        }
+        else {
+            // Deliver an unpadded I420 frame which can be understood by the default frame factory.
+
+            CVPixelBufferLockBaseAddress(videoFrame, kCVPixelBufferLock_ReadOnly);
+
+            uint8_t *baseAddress = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(videoFrame, kYPlaneIndex);
+            uint8_t *uvAddress = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(videoFrame, kUVPlaneIndex);
+            size_t yPlaneBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(videoFrame, kYPlaneIndex);
+            size_t uvPlaneBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(videoFrame, kUVPlaneIndex);
+            size_t uvPlaneHeight = CVPixelBufferGetHeightOfPlane(videoFrame, kUVPlaneIndex);
+            size_t chromaWidth = CVPixelBufferGetWidthOfPlane(videoFrame, kUVPlaneIndex);
+
+            size_t ySize = (size_t)(width * yPlaneHeight);
+            size_t uSize = (size_t)(chromaWidth * uvPlaneHeight);
+            uint8 *yBuffer = (uint8 *)_planarFrame.data;
+            uint8 *uBuffer = &yBuffer[ySize];
+            uint8 *vBuffer = &yBuffer[ySize + uSize];
+
+            libyuv::NV12ToI420(baseAddress, (int)yPlaneBytesPerRow,
+                               uvAddress, (int)uvPlaneBytesPerRow,
+                               yBuffer, (int)width,
+                               uBuffer, (int)chromaWidth,
+                               vBuffer, (int)chromaWidth,
+                               (int)width, (int)yPlaneHeight);
+
+            CVPixelBufferUnlockBaseAddress(videoFrame, kCVPixelBufferLock_ReadOnly);
+        }
+
+        // Signal the captured frame.
 
         if (_startThread->IsCurrent()) {
             SignalFrameCaptured(this, &_planarFrame);
@@ -238,12 +257,21 @@ namespace perch {
         best_format->fourcc = supportedFormat.fourcc;
         best_format->interval = supportedFormat.interval;
 
+        // Setup a temporary conversion buffer.
+
         int planarBufferSize = 1.5 * (best_format->width * best_format->height);
+        _planarFrame.data_size = planarBufferSize;
         _planarFrame.width = best_format->width;
         _planarFrame.height = best_format->height;
-        _planarFrame.fourcc = cricket::FOURCC_I420;
-        _planarFrame.data = malloc(planarBufferSize);
-        _planarFrame.data_size = planarBufferSize;
+
+        if (VideoCaptureKitUsePooledMemory) {
+            _planarFrame.fourcc = cricket::FOURCC_NV12;
+            _planarFrame.data = NULL;
+        }
+        else {
+            _planarFrame.fourcc = cricket::FOURCC_I420;
+            _planarFrame.data = malloc(planarBufferSize);
+        }
 
         return true;
     }
