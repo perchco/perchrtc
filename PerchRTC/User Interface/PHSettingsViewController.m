@@ -18,6 +18,7 @@
 typedef NS_ENUM(NSUInteger, PHSettingsSection)
 {
     PHSettingsSectionRenderers = 0,
+    PHSettingsSectionVideoCodec,
     PHSettingsSectionAudioCodec,
     PHSettingsSectionIceFilter,
     PHSettingsSectionIceProtocol,
@@ -82,6 +83,9 @@ typedef NS_ENUM(NSUInteger, PHSettingsSection)
         case PHSettingsSectionRenderers:
             numRows = 3;
             break;
+        case PHSettingsSectionVideoCodec:
+            numRows = 2;
+            break;
         case PHSettingsSectionAudioCodec:
             numRows = 2;
             break;
@@ -108,6 +112,9 @@ typedef NS_ENUM(NSUInteger, PHSettingsSection)
     switch (section) {
         case PHSettingsSectionRenderers:
             title = @"Renderer";
+            break;
+        case PHSettingsSectionVideoCodec:
+            title = @"Video Codec";
             break;
         case PHSettingsSectionAudioCodec:
             title = @"Audio Codec";
@@ -171,6 +178,9 @@ typedef NS_ENUM(NSUInteger, PHSettingsSection)
         case PHSettingsSectionRenderers:
             self.settings.rendererType = row;
             break;
+        case PHSettingsSectionVideoCodec:
+            self.settings.preferredVideoCodec = row;
+            break;
         case PHSettingsSectionAudioCodec:
             self.settings.preferredAudioCodec = row;
             break;
@@ -204,6 +214,7 @@ typedef NS_ENUM(NSUInteger, PHSettingsSection)
     NSArray *sectionTitles = nil;
     BOOL selected = NO;
     PHRendererType renderer = self.settings.rendererType;
+    PHVideoCodec videoCodec = self.settings.preferredVideoCodec;
     PHAudioCodec codec = self.settings.preferredAudioCodec;
     PHIceProtocol protocol = self.settings.iceProtocol;
     PHIceFilter filter = self.settings.iceFilter;
@@ -212,6 +223,10 @@ typedef NS_ENUM(NSUInteger, PHSettingsSection)
         case PHSettingsSectionRenderers:
             sectionTitles = @[@"Sample Buffer", @"OpenGL ES", @"Quartz"];
             selected = row == renderer;
+            break;
+        case PHSettingsSectionVideoCodec:
+            sectionTitles = @[@"VP8", @"H.264"];
+            selected = row == videoCodec;
             break;
         case PHSettingsSectionAudioCodec:
             sectionTitles = @[@"Opus", @"ISAC"];
