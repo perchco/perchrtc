@@ -14,7 +14,7 @@
 
 #import <SocketRocket/SRWebSocket.h>
 
-static NSString *XSWebSocketAddress = @"wss://endpoint01.uswest.xirsys.com:449";
+static NSString *XSWebSocketAddress = @"wss://endpoint02.uswest.xirsys.com:443";
 
 /**
  *  XirSys requires a keepalive for presence. The timing constant is taken from their Rails Demo.

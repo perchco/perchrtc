@@ -59,10 +59,13 @@
 
 + (RTCSessionDescription *)conditionedSessionDescription:(RTCSessionDescription *)sessionDescription
                                               audioCodec:(PHAudioCodec)audioCodec
+                                              videoCodec:(PHVideoCodec)videoCodec
                                             videoBitRate:(NSUInteger)videoBitRate
                                             audioBitRate:(NSUInteger)audioBitRate
 {
     NSString *sdpString = nil;
+
+    // Audio
 
     if (audioCodec == PHAudioCodecOpus) {
         sdpString = sessionDescription.description;
@@ -71,7 +74,19 @@
         sdpString = [self preferISACSimple:sessionDescription.description];
     }
 
+    // Video
+
+    if (videoCodec == PHVideoCodecH264) {
+        sdpString = [self preferH264:sdpString];
+    }
+    else {
+        sdpString = [self preferVP8:sdpString];
+    }
+
+    // Bandwidth
+
     sdpString = [self constrainedSessionDescription:sdpString videoBandwidth:videoBitRate audioBandwidth:audioBitRate];
+
     return [[RTCSessionDescription alloc] initWithType:sessionDescription.type sdp:sdpString];
 }
 
@@ -104,7 +119,86 @@
 
 + (NSString *)preferISACSimple:(NSString *)sdp
 {
+    // TODO: @chris This is a hacky fix, and should made more robust.
+
     return [sdp stringByReplacingOccurrencesOfString:@"111 103" withString:@"103 111"];
+}
+
++ (NSString *)preferVideoCodec:(NSString *)codec inSDP:(NSString *)sdpString
+{
+    NSString *lineSeparator = @"\n";
+    NSString *mLineSeparator = @" ";
+    // Copied from PeerConnectionClient.java.
+    // TODO(tkchin): Move this to a shared C++ file.
+    NSMutableArray *lines = [NSMutableArray arrayWithArray:[sdpString componentsSeparatedByString:lineSeparator]];
+    NSInteger mLineIndex = -1;
+    NSString *codecRtpMap = nil;
+    // a=rtpmap:<payload type> <encoding name>/<clock rate>
+    // [/<encoding parameters>]
+    NSString *pattern = [NSString stringWithFormat:@"^a=rtpmap:(\\d+) %@(/\\d+)+[\r]?$", codec];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:0
+                                                                             error:nil];
+    for (NSInteger i = 0; (i < lines.count) && (mLineIndex == -1 || !codecRtpMap); ++i) {
+        NSString *line = lines[i];
+        if ([line hasPrefix:@"m=video"]) {
+            mLineIndex = i;
+            continue;
+        }
+        NSTextCheckingResult *codecMatches = [regex firstMatchInString:line
+                                                               options:0
+                                                                 range:NSMakeRange(0, line.length)];
+        if (codecMatches) {
+            codecRtpMap = [line substringWithRange:[codecMatches rangeAtIndex:1]];
+            continue;
+        }
+    }
+
+    if (mLineIndex == -1) {
+        NSLog(@"No m=video line, so can't prefer %@", codec);
+        return sdpString;
+    }
+
+    if (!codecRtpMap) {
+        NSLog(@"No rtpmap for %@", codec);
+        return sdpString;
+    }
+
+    NSArray *origMLineParts = [lines[mLineIndex] componentsSeparatedByString:mLineSeparator];
+
+    if (origMLineParts.count > 3) {
+        NSMutableArray *newMLineParts = [NSMutableArray arrayWithCapacity:origMLineParts.count];
+        NSInteger origPartIndex = 0;
+
+        // Format is: m=<media> <port> <proto> <fmt> ...
+        [newMLineParts addObject:origMLineParts[origPartIndex++]];
+        [newMLineParts addObject:origMLineParts[origPartIndex++]];
+        [newMLineParts addObject:origMLineParts[origPartIndex++]];
+        [newMLineParts addObject:codecRtpMap];
+
+        for (; origPartIndex < origMLineParts.count; ++origPartIndex) {
+            if (![codecRtpMap isEqualToString:origMLineParts[origPartIndex]]) {
+                [newMLineParts addObject:origMLineParts[origPartIndex]];
+            }
+        }
+        NSString *newMLine = [newMLineParts componentsJoinedByString:mLineSeparator];
+        [lines replaceObjectAtIndex:mLineIndex withObject:newMLine];
+    }
+    else {
+        NSLog(@"Wrong SDP media description format: %@", lines[mLineIndex]);
+    }
+
+    return [lines componentsJoinedByString:lineSeparator];
+}
+
++ (NSString *)preferVP8:(NSString *)sdpString
+{
+    return [self preferVideoCodec:@"VP8" inSDP:sdpString];
+}
+
++ (NSString *)preferH264:(NSString *)sdpString
+{
+    return [self preferVideoCodec:@"H264" inSDP:sdpString];
 }
 
 + (NSString *)constrainedSessionDescription:(NSString *)sdp videoBandwidth:(NSUInteger)videoBandwidth audioBandwidth:(NSUInteger)audioBandwidth

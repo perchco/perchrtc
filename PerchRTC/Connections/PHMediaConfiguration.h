@@ -23,6 +23,14 @@ typedef NS_ENUM(NSUInteger, PHAudioCodec)
     PHAudioCodecISAC = 1
 };
 
+typedef NS_ENUM(NSUInteger, PHVideoCodec)
+{
+    /* Stable, software VP8 encode & decode via libvpx */
+    PHVideoCodecVP8 = 0,
+    /* Experimental, hardware H.264 encode & decode via VideoToolbox. */
+    PHVideoCodecH264 = 1
+};
+
 typedef NS_OPTIONS(NSUInteger, PHIceFilter)
 {
     PHIceFilterLocal = (1UL << 0),
@@ -47,17 +55,21 @@ static double PHMediaSessionTargetBpp = 0.00008403125;
 
 @interface PHMediaConfiguration : NSObject <NSCopying>
 
-/* Defaults to PHIceFilterAny */
-/* Defaults to PHIceProtocolAny */
-/* Defaults to PHAudioCodecOpus */
-/* Defaults to 640x480 @ 30 fps, Bi-Planar Full Range */
-
+/*
+ Defaults:
+ PHIceFilterAny
+ PHIceProtocolAny
+ PHAudioCodecOpus
+ PHVideoCodecVP8
+ 640x480 @ 30 fps, Bi-Planar Full Range 
+ */
 + (instancetype)defaultConfiguration;
 
 @property (nonatomic, assign) PHRendererType rendererType;
 @property (nonatomic, assign) PHIceFilter iceFilter;
 @property (nonatomic, assign) PHIceProtocol iceProtocol;
 @property (nonatomic, assign) PHAudioCodec preferredAudioCodec;
+@property (nonatomic, assign) PHVideoCodec preferredVideoCodec;
 @property (nonatomic, assign) NSUInteger maxAudioBitrate;
 @property (nonatomic, assign) PHVideoFormat preferredReceiverFormat;
 

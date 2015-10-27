@@ -19,6 +19,7 @@
     config.iceProtocol = PHIceProtocolAny;
     config.maxAudioBitrate = PHMediaSessionMaximumAudioRate;
     config.preferredAudioCodec = PHAudioCodecOpus;
+    config.preferredVideoCodec = PHVideoCodecVP8;
 
     PHVideoFormat format;
     format.dimensions = (CMVideoDimensions){640, 480};
@@ -39,6 +40,7 @@
     copy.iceProtocol = self.iceProtocol;
     copy.maxAudioBitrate = self.maxAudioBitrate;
     copy.preferredAudioCodec = self.preferredAudioCodec;
+    copy.preferredVideoCodec = self.preferredVideoCodec;
     copy.preferredReceiverFormat = self.preferredReceiverFormat;
 
     return copy;

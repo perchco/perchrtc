@@ -27,6 +27,7 @@
 
 + (RTCSessionDescription *)conditionedSessionDescription:(RTCSessionDescription *)sessionDescription
                                               audioCodec:(PHAudioCodec)audioCodec
+                                              videoCodec:(PHVideoCodec)videoCodec
                                             videoBitRate:(NSUInteger)videoBitRate
                                             audioBitRate:(NSUInteger)audioBitRate;
 

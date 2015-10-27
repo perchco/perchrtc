@@ -780,11 +780,13 @@ static BOOL PHMediaSessionGatherConnectionStats = NO;
         NSUInteger maxVideoRate = PHVideoFormatComputePeakRate(format, PHMediaSessionTargetBpp, PHMediaSessionMaximumVideoRate);
         NSUInteger maxAudioRate = self.sessionConfiguration.maxAudioBitrate;
         PHAudioCodec audioCodec = self.sessionConfiguration.preferredAudioCodec;
+        PHVideoCodec videoCodec = self.sessionConfiguration.preferredVideoCodec;
 
         DDLogVerbose(@"Using max video bandwidth: %lu, audio: %lu", (unsigned long)maxVideoRate, (unsigned long)maxAudioRate);
 
         RTCSessionDescription *conditionedSDP = [PHSessionDescriptionFactory conditionedSessionDescription:sdp
                                                                                                 audioCodec:audioCodec
+                                                                                                videoCodec:videoCodec
                                                                                               videoBitRate:maxVideoRate
                                                                                               audioBitRate:maxAudioRate];
 
