@@ -47,6 +47,10 @@ static NSUInteger kPHConnectionManagerMaxRoomPeers = 2;
 static BOOL kPHConnectionManagerUseCaptureKit = YES;
 #endif
 
+static NSString *XSWebSocketDefaultAddress = @"wss://endpoint01.uswest.xirsys.com:443";
+
+static NSURL *peerServerURL = nil;
+
 @interface PHConnectionBroker() <PHSignalingDelegate, XSPeerClientDelegate, XSRoomObserver>
 
 @property (nonatomic, strong) XSClient *apiClient;
@@ -62,6 +66,7 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
 @property (nonatomic, strong) AFNetworkReachabilityManager *reachability;
 @property (nonatomic, assign) NSUInteger retryCount;
 
+@property (nonatomic, strong) NSURLSessionDataTask *socketURLTask;
 @property (nonatomic, strong) NSURLSessionDataTask *socketTokenTask;
 @property (nonatomic, strong) NSURLSessionDataTask *iceServersTask;
 
@@ -203,13 +208,41 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
 {
     DDLogDebug(@"%s", __PRETTY_FUNCTION__);
 
+    XSObjectCompletion socketURLHandler = ^(id object, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error && [object isKindOfClass:[NSDictionary class]]) {
+                DDLogInfo(@"Fetched socket URL: %@", object[@"value"]);
+                // Prefer secure.
+                NSURLComponents *components = [NSURLComponents componentsWithString:object[@"value"]];
+                components.scheme = @"wss";
+                peerServerURL = [components URL];
+            }
+            else {
+                DDLogError(@"Failed to fetch socket URL. Using default: %@", XSWebSocketDefaultAddress);
+                peerServerURL = [NSURL URLWithString:XSWebSocketDefaultAddress];
+            }
+
+            self.socketURLTask = nil;
+
+            [self authorizePeerClient];
+        });
+    };
+
+    // Fetch the socket server for the first time.
+
+    if (!peerServerURL) {
+        DDLogInfo(@"Fetching socket server URL ..");
+        self.socketURLTask = [self.apiClient listWebSocketServersWithCompletion:socketURLHandler];
+        return;
+    }
+
     XSObjectCompletion socketTokenHandler = ^(id object, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.socketTokenTask = nil;
 
             if (!error) {
                 NSString *token = [self parseSocketCredentials:object];
-                [self.room authorizeWithToken:token];
+                [self.room authorizeWithToken:token url:peerServerURL];
                 [self.peerClient connect];
             }
             else if (error.code != NSURLErrorCancelled) {
@@ -235,7 +268,7 @@ static BOOL kPHConnectionManagerUseCaptureKit = YES;
 - (void)checkAuthorizationStatus
 {
     BOOL isAuthorized = [self.room.authToken length] > 0;
-    BOOL authorizationInProgress = self.socketTokenTask != nil;
+    BOOL authorizationInProgress = self.socketTokenTask != nil || self.socketURLTask != nil;
     BOOL isReachable = self.reachability.isReachable;
     BOOL retryAllowed = self.retryCount < kPHConnectionManagerMaxWebSocketAuthAttempts;
 

@@ -37,6 +37,8 @@
  */
 @property (nonatomic, copy, readonly) NSString *authToken;
 
+@property (nonatomic, copy, readonly) NSURL *serverURL;
+
 /**
  *  The local peer.
  */
@@ -54,7 +56,7 @@
 
 - (void)removeRoomObserver:(id<XSRoomObserver>)observer;
 
-- (void)authorizeWithToken:(NSString *)authToken;
+- (void)authorizeWithToken:(NSString *)authToken url:(NSURL *)serverURL;
 
 - (void)clearAuthorizationToken;
 
