@@ -150,7 +150,8 @@ For a more in depth discussion of the sample code please visit our [PerchRTC blo
 
 ## WebRTC Build Notes
 
-* r8444, master.
-* Supports Armv7, Armv7s, Arm64, x86, and x86-64 architectures (release mode).
-* Built against the iOS 8.3 SDK using the system Clang compiler (not the Chromium default).
+* Chrome m45 branch.
+* Capture pipeline modified to use pooled memory.
+* Supports Armv7, Arm64, x86, and x86-64 architectures (release mode).
+* Built against the iOS 8.4 SDK using the system Clang compiler (not the Chromium default).
 * Based upon the fantastic [PristineIO WebRTC scripts](https://github.com/pristineio/webrtc-build-scripts).
