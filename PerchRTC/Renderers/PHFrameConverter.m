@@ -7,7 +7,7 @@
 //
 
 #import "PHFrameConverter.h"
-#import "libyuv.h"
+#import <nighthawk-webrtc/libyuv.h>
 
 #import "PHConvert.h"
 

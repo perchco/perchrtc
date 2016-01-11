@@ -8,28 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2916E06E3C614C1597B69AED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F40CBFAC184F4D4990076EE3 /* libPods.a */; };
-		4BCFC5BF1A5215A800DFC4B8 /* PHErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFC5BE1A5215A800DFC4B8 /* PHErrors.m */; };
 		4BCFC5C11A53141D00DFC4B8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BCFC5C01A53141D00DFC4B8 /* Launch Screen.xib */; };
 		5867C65B86B9E19C4837AA93 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F40CBFAC184F4D4990076EE3 /* libPods.a */; };
 		BF0206BB1AFC376A00C8160E /* PHSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0206BA1AFC376A00C8160E /* PHSettingsViewController.m */; };
-		BF021E601A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BF021E5F1A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.m */; };
 		BF021E631A4E84CD007E8F11 /* PHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF021E621A4E84CD007E8F11 /* PHViewController.m */; };
 		BF021E661A4E850B007E8F11 /* UIButton+PHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BF021E651A4E850B007E8F11 /* UIButton+PHButton.m */; };
 		BF021E691A4E859E007E8F11 /* UIFont+Fonts.m in Sources */ = {isa = PBXBuildFile; fileRef = BF021E681A4E859E007E8F11 /* UIFont+Fonts.m */; };
-		BF19FD8E1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF19FD8D1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.m */; };
-		BF19FD971AFADCCF00719AA9 /* PHVideoCaptureBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF19FD941AFADCCF00719AA9 /* PHVideoCaptureBridge.mm */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
-		BF19FD981AFADCCF00719AA9 /* PHVideoCaptureKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF19FD961AFADCCF00719AA9 /* PHVideoCaptureKit.mm */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
-		BF3D940B1A19B6A90068C766 /* PHCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3D940A1A19B6A90068C766 /* PHCaptureManager.m */; };
-		BF3D940E1A19B6C50068C766 /* PHCapturePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3D940D1A19B6C50068C766 /* PHCapturePreviewView.m */; };
-		BF3D94111A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3D94101A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.m */; };
-		BF3D94171A19B7E00068C766 /* PHVideoPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3D94161A19B7E00068C766 /* PHVideoPublisher.m */; };
-		BF3F17B11A52895300443D52 /* PHAudioSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3F17B01A52895300443D52 /* PHAudioSessionController.m */; };
+		BF1A8A0E1C4352FE00E1286E /* PHConnectionBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1A8A0B1C4352FE00E1286E /* PHConnectionBroker.m */; };
+		BF1A8A0F1C4352FE00E1286E /* PHErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1A8A0D1C4352FE00E1286E /* PHErrors.m */; };
 		BF46904619DD3AD100B02945 /* XSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46903F19DD3AD100B02945 /* XSMessage.m */; };
 		BF46904719DD3AD100B02945 /* XSPeer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46904119DD3AD100B02945 /* XSPeer.m */; };
 		BF46904819DD3AD100B02945 /* XSPeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46904319DD3AD100B02945 /* XSPeerClient.m */; };
 		BF46904919DD3AD100B02945 /* XSRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = BF46904519DD3AD100B02945 /* XSRoom.m */; };
-		BF50AB8A1AFC831B00E56E34 /* PHMediaConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BF50AB891AFC831B00E56E34 /* PHMediaConfiguration.m */; };
-		BF5DE2DC1AFEE6AC00664DCA /* PHConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5DE2DA1AFEE6AC00664DCA /* PHConvert.m */; };
 		BF80C58C19960F54007DE967 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF80C58B19960F54007DE967 /* Foundation.framework */; };
 		BF80C59019960F54007DE967 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF80C58F19960F54007DE967 /* UIKit.framework */; };
 		BF80C59619960F54007DE967 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF80C59419960F54007DE967 /* InfoPlist.strings */; };
@@ -41,17 +31,7 @@
 		BF80C5A719960F54007DE967 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF80C58F19960F54007DE967 /* UIKit.framework */; };
 		BF80C5AF19960F54007DE967 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF80C5AD19960F54007DE967 /* InfoPlist.strings */; };
 		BF80C5B119960F54007DE967 /* PerchRTCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF80C5B019960F54007DE967 /* PerchRTCTests.m */; };
-		BF83887E19E90B42007578A9 /* PHSampleBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF83887D19E90B42007578A9 /* PHSampleBufferView.m */; };
-		BF83888119E90D4A007578A9 /* PHSampleBufferRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF83888019E90D4A007578A9 /* PHSampleBufferRenderer.m */; };
-		BF99485E1AF9F52C00B40D03 /* PHEAGLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF99485D1AF9F52C00B40D03 /* PHEAGLRenderer.m */; };
 		BFB053EF1A538A8F00AF1CBD /* PHMuteOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB053EE1A538A8F00AF1CBD /* PHMuteOverlayView.m */; };
-		BFC084F319DC976600B38772 /* PHFrameConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC084F019DC976600B38772 /* PHFrameConverter.m */; };
-		BFC084F419DC976600B38772 /* PHQuartzVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC084F219DC976600B38772 /* PHQuartzVideoView.m */; };
-		BFE4F53A1A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE4F5391A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.m */; };
-		BFEC3DF61A6B7FC4005CE903 /* PHSessionDescriptionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEC3DF51A6B7FC4005CE903 /* PHSessionDescriptionFactory.m */; };
-		BFEF78811A40F10800BB6711 /* PHPeerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEF78801A40F10800BB6711 /* PHPeerConnection.m */; };
-		BFF2532B1A41514C007DBE23 /* PHMediaSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF2532A1A41514C007DBE23 /* PHMediaSession.m */; };
-		BFF8F592199616D50065A555 /* PHConnectionBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF8F591199616D50065A555 /* PHConnectionBroker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,39 +46,21 @@
 
 /* Begin PBXFileReference section */
 		09B2429C8CDF70715B44E8A1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		4BCFC5BD1A5215A800DFC4B8 /* PHErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHErrors.h; sourceTree = "<group>"; };
-		4BCFC5BE1A5215A800DFC4B8 /* PHErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHErrors.m; sourceTree = "<group>"; };
-		4BCFC5C01A53141D00DFC4B8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
+		4BCFC5C01A53141D00DFC4B8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		4BD55A4D1AFD58F800CDD370 /* PHCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHCredentials.h; sourceTree = "<group>"; };
 		BF0206B91AFC376A00C8160E /* PHSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSettingsViewController.h; sourceTree = "<group>"; };
 		BF0206BA1AFC376A00C8160E /* PHSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSettingsViewController.m; sourceTree = "<group>"; };
-		BF0206BC1AFC41D000C8160E /* PHMediaConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHMediaConfiguration.h; sourceTree = "<group>"; };
-		BF021E5E1A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCMediaStream+PHStreamConfiguration.h"; sourceTree = "<group>"; };
-		BF021E5F1A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+PHStreamConfiguration.m"; sourceTree = "<group>"; };
 		BF021E611A4E84CD007E8F11 /* PHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHViewController.h; sourceTree = "<group>"; };
 		BF021E621A4E84CD007E8F11 /* PHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHViewController.m; sourceTree = "<group>"; };
 		BF021E641A4E850B007E8F11 /* UIButton+PHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+PHButton.h"; sourceTree = "<group>"; };
 		BF021E651A4E850B007E8F11 /* UIButton+PHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+PHButton.m"; sourceTree = "<group>"; };
 		BF021E671A4E859E007E8F11 /* UIFont+Fonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Fonts.h"; sourceTree = "<group>"; };
 		BF021E681A4E859E007E8F11 /* UIFont+Fonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Fonts.m"; sourceTree = "<group>"; };
-		BF19FD8C1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHEAGLVideoViewContainer.h; sourceTree = "<group>"; };
-		BF19FD8D1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHEAGLVideoViewContainer.m; sourceTree = "<group>"; };
-		BF19FD921AFADCCE00719AA9 /* PHFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHFormats.h; path = PerchRTC/CaptureKit/PHFormats.h; sourceTree = "<group>"; };
-		BF19FD931AFADCCE00719AA9 /* PHVideoCaptureBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHVideoCaptureBridge.h; path = PerchRTC/CaptureKit/PHVideoCaptureBridge.h; sourceTree = "<group>"; };
-		BF19FD941AFADCCF00719AA9 /* PHVideoCaptureBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PHVideoCaptureBridge.mm; path = PerchRTC/CaptureKit/PHVideoCaptureBridge.mm; sourceTree = "<group>"; };
-		BF19FD951AFADCCF00719AA9 /* PHVideoCaptureKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHVideoCaptureKit.h; path = PerchRTC/CaptureKit/PHVideoCaptureKit.h; sourceTree = "<group>"; };
-		BF19FD961AFADCCF00719AA9 /* PHVideoCaptureKit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PHVideoCaptureKit.mm; path = PerchRTC/CaptureKit/PHVideoCaptureKit.mm; sourceTree = "<group>"; };
 		BF1A82F71A187A3D0018AA10 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
-		BF3D94091A19B6A90068C766 /* PHCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHCaptureManager.h; sourceTree = "<group>"; };
-		BF3D940A1A19B6A90068C766 /* PHCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHCaptureManager.m; sourceTree = "<group>"; };
-		BF3D940C1A19B6C50068C766 /* PHCapturePreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHCapturePreviewView.h; sourceTree = "<group>"; };
-		BF3D940D1A19B6C50068C766 /* PHCapturePreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHCapturePreviewView.m; sourceTree = "<group>"; };
-		BF3D940F1A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVCaptureDevice+PHCapturePresets.h"; sourceTree = "<group>"; };
-		BF3D94101A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+PHCapturePresets.m"; sourceTree = "<group>"; };
-		BF3D94151A19B7E00068C766 /* PHVideoPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHVideoPublisher.h; sourceTree = "<group>"; };
-		BF3D94161A19B7E00068C766 /* PHVideoPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHVideoPublisher.m; sourceTree = "<group>"; };
-		BF3F17AF1A52895300443D52 /* PHAudioSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHAudioSessionController.h; sourceTree = "<group>"; };
-		BF3F17B01A52895300443D52 /* PHAudioSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHAudioSessionController.m; sourceTree = "<group>"; };
+		BF1A8A0A1C4352FE00E1286E /* PHConnectionBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHConnectionBroker.h; sourceTree = "<group>"; };
+		BF1A8A0B1C4352FE00E1286E /* PHConnectionBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHConnectionBroker.m; sourceTree = "<group>"; };
+		BF1A8A0C1C4352FE00E1286E /* PHErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHErrors.h; sourceTree = "<group>"; };
+		BF1A8A0D1C4352FE00E1286E /* PHErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHErrors.m; sourceTree = "<group>"; };
 		BF46903E19DD3AD100B02945 /* XSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSMessage.h; sourceTree = "<group>"; };
 		BF46903F19DD3AD100B02945 /* XSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSMessage.m; sourceTree = "<group>"; };
 		BF46904019DD3AD100B02945 /* XSPeer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSPeer.h; sourceTree = "<group>"; };
@@ -107,10 +69,6 @@
 		BF46904319DD3AD100B02945 /* XSPeerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSPeerClient.m; sourceTree = "<group>"; };
 		BF46904419DD3AD100B02945 /* XSRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSRoom.h; sourceTree = "<group>"; };
 		BF46904519DD3AD100B02945 /* XSRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSRoom.m; sourceTree = "<group>"; };
-		BF50AB891AFC831B00E56E34 /* PHMediaConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHMediaConfiguration.m; sourceTree = "<group>"; };
-		BF5DE2DA1AFEE6AC00664DCA /* PHConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHConvert.m; sourceTree = "<group>"; };
-		BF5DE2DB1AFEE6AC00664DCA /* PHConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHConvert.h; sourceTree = "<group>"; };
-		BF6AE50E1A104ECF001139EE /* AVSampleBufferDisplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSampleBufferDisplayLayer.h; sourceTree = "<group>"; };
 		BF80C58819960F54007DE967 /* PerchRTC-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PerchRTC-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF80C58B19960F54007DE967 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BF80C58D19960F54007DE967 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,30 +85,9 @@
 		BF80C5AC19960F54007DE967 /* PerchRTCTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PerchRTCTests-Info.plist"; sourceTree = "<group>"; };
 		BF80C5AE19960F54007DE967 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF80C5B019960F54007DE967 /* PerchRTCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerchRTCTests.m; sourceTree = "<group>"; };
-		BF83887C19E90B42007578A9 /* PHSampleBufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSampleBufferView.h; sourceTree = "<group>"; };
-		BF83887D19E90B42007578A9 /* PHSampleBufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSampleBufferView.m; sourceTree = "<group>"; };
-		BF83887F19E90D4A007578A9 /* PHSampleBufferRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSampleBufferRenderer.h; sourceTree = "<group>"; };
-		BF83888019E90D4A007578A9 /* PHSampleBufferRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSampleBufferRenderer.m; sourceTree = "<group>"; };
-		BF99485C1AF9F52C00B40D03 /* PHEAGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHEAGLRenderer.h; sourceTree = "<group>"; };
-		BF99485D1AF9F52C00B40D03 /* PHEAGLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHEAGLRenderer.m; sourceTree = "<group>"; };
 		BFB053ED1A538A8F00AF1CBD /* PHMuteOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHMuteOverlayView.h; sourceTree = "<group>"; };
 		BFB053EE1A538A8F00AF1CBD /* PHMuteOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHMuteOverlayView.m; sourceTree = "<group>"; };
-		BFC084EF19DC976600B38772 /* PHFrameConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHFrameConverter.h; sourceTree = "<group>"; };
-		BFC084F019DC976600B38772 /* PHFrameConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHFrameConverter.m; sourceTree = "<group>"; };
-		BFC084F119DC976600B38772 /* PHQuartzVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHQuartzVideoView.h; sourceTree = "<group>"; };
-		BFC084F219DC976600B38772 /* PHQuartzVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHQuartzVideoView.m; sourceTree = "<group>"; };
 		BFC80E071A104BE10051B67C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		BFE4F5341A43730A0075CDA5 /* PHRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHRenderer.h; sourceTree = "<group>"; };
-		BFE4F5381A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+PHDeviceAdditions.h"; sourceTree = "<group>"; };
-		BFE4F5391A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+PHDeviceAdditions.m"; sourceTree = "<group>"; };
-		BFEC3DF41A6B7FC4005CE903 /* PHSessionDescriptionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSessionDescriptionFactory.h; sourceTree = "<group>"; };
-		BFEC3DF51A6B7FC4005CE903 /* PHSessionDescriptionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSessionDescriptionFactory.m; sourceTree = "<group>"; };
-		BFEF787F1A40F10800BB6711 /* PHPeerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPeerConnection.h; sourceTree = "<group>"; };
-		BFEF78801A40F10800BB6711 /* PHPeerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPeerConnection.m; sourceTree = "<group>"; };
-		BFF253291A41514C007DBE23 /* PHMediaSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHMediaSession.h; sourceTree = "<group>"; };
-		BFF2532A1A41514C007DBE23 /* PHMediaSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHMediaSession.m; sourceTree = "<group>"; };
-		BFF8F590199616D50065A555 /* PHConnectionBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHConnectionBroker.h; sourceTree = "<group>"; };
-		BFF8F591199616D50065A555 /* PHConnectionBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHConnectionBroker.m; sourceTree = "<group>"; };
 		D1966AF91CC45DE3E96E08E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F40CBFAC184F4D4990076EE3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -206,27 +143,16 @@
 			path = "User Interface";
 			sourceTree = "<group>";
 		};
-		BF19FD911AFADCBF00719AA9 /* CaptureKit */ = {
+		BF1A8A091C4352FE00E1286E /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				BF19FD921AFADCCE00719AA9 /* PHFormats.h */,
-				BF19FD931AFADCCE00719AA9 /* PHVideoCaptureBridge.h */,
-				BF19FD941AFADCCF00719AA9 /* PHVideoCaptureBridge.mm */,
-				BF19FD951AFADCCF00719AA9 /* PHVideoCaptureKit.h */,
-				BF19FD961AFADCCF00719AA9 /* PHVideoCaptureKit.mm */,
+				BF1A8A0A1C4352FE00E1286E /* PHConnectionBroker.h */,
+				BF1A8A0B1C4352FE00E1286E /* PHConnectionBroker.m */,
+				BF1A8A0C1C4352FE00E1286E /* PHErrors.h */,
+				BF1A8A0D1C4352FE00E1286E /* PHErrors.m */,
 			);
-			name = CaptureKit;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		BF3F17AE1A52895300443D52 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				BF3F17AF1A52895300443D52 /* PHAudioSessionController.h */,
-				BF3F17B01A52895300443D52 /* PHAudioSessionController.m */,
-			);
-			path = Audio;
-			sourceTree = "<group>";
+			path = Client;
+			sourceTree = SOURCE_ROOT;
 		};
 		BF46903D19DD3AD100B02945 /* XirSys */ = {
 			isa = PBXGroup;
@@ -241,23 +167,6 @@
 				BF46904519DD3AD100B02945 /* XSRoom.m */,
 			);
 			path = XirSys;
-			sourceTree = "<group>";
-		};
-		BF5312E619E1C42E000C7769 /* Capture */ = {
-			isa = PBXGroup;
-			children = (
-				BF3D940F1A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.h */,
-				BF3D94101A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.m */,
-				BF3D94091A19B6A90068C766 /* PHCaptureManager.h */,
-				BF3D940A1A19B6A90068C766 /* PHCaptureManager.m */,
-				BF3D940C1A19B6C50068C766 /* PHCapturePreviewView.h */,
-				BF3D940D1A19B6C50068C766 /* PHCapturePreviewView.m */,
-				BF3D94151A19B7E00068C766 /* PHVideoPublisher.h */,
-				BF3D94161A19B7E00068C766 /* PHVideoPublisher.m */,
-				BFE4F5381A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.h */,
-				BFE4F5391A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.m */,
-			);
-			path = Capture;
 			sourceTree = "<group>";
 		};
 		BF80C57F19960F54007DE967 = {
@@ -297,20 +206,12 @@
 		BF80C59119960F54007DE967 /* PerchRTC */ = {
 			isa = PBXGroup;
 			children = (
-				BF3F17AE1A52895300443D52 /* Audio */,
+				BF1A8A091C4352FE00E1286E /* Client */,
 				4BCFC5C01A53141D00DFC4B8 /* Launch Screen.xib */,
-				BFEF787E1A40F0EF00BB6711 /* Connections */,
-				BF5312E619E1C42E000C7769 /* Capture */,
-				BF19FD911AFADCBF00719AA9 /* CaptureKit */,
 				BF80C59A19960F54007DE967 /* PHAppDelegate.h */,
 				BF80C59B19960F54007DE967 /* PHAppDelegate.m */,
 				BF80C59D19960F54007DE967 /* Images.xcassets */,
 				BF80C59219960F54007DE967 /* Supporting Files */,
-				BFF8F590199616D50065A555 /* PHConnectionBroker.h */,
-				BFF8F591199616D50065A555 /* PHConnectionBroker.m */,
-				4BCFC5BD1A5215A800DFC4B8 /* PHErrors.h */,
-				4BCFC5BE1A5215A800DFC4B8 /* PHErrors.m */,
-				BFC084EE19DC976600B38772 /* Renderers */,
 				BF021E5D1A4E849D007E8F11 /* User Interface */,
 				BF46903D19DD3AD100B02945 /* XirSys */,
 			);
@@ -345,46 +246,6 @@
 				BF80C5AD19960F54007DE967 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BFC084EE19DC976600B38772 /* Renderers */ = {
-			isa = PBXGroup;
-			children = (
-				BF6AE50E1A104ECF001139EE /* AVSampleBufferDisplayLayer.h */,
-				BF19FD8C1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.h */,
-				BF19FD8D1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.m */,
-				BF99485C1AF9F52C00B40D03 /* PHEAGLRenderer.h */,
-				BF99485D1AF9F52C00B40D03 /* PHEAGLRenderer.m */,
-				BFC084EF19DC976600B38772 /* PHFrameConverter.h */,
-				BFC084F019DC976600B38772 /* PHFrameConverter.m */,
-				BF83887F19E90D4A007578A9 /* PHSampleBufferRenderer.h */,
-				BF83888019E90D4A007578A9 /* PHSampleBufferRenderer.m */,
-				BF83887C19E90B42007578A9 /* PHSampleBufferView.h */,
-				BF83887D19E90B42007578A9 /* PHSampleBufferView.m */,
-				BFC084F119DC976600B38772 /* PHQuartzVideoView.h */,
-				BFC084F219DC976600B38772 /* PHQuartzVideoView.m */,
-				BFE4F5341A43730A0075CDA5 /* PHRenderer.h */,
-				BF5DE2DB1AFEE6AC00664DCA /* PHConvert.h */,
-				BF5DE2DA1AFEE6AC00664DCA /* PHConvert.m */,
-			);
-			path = Renderers;
-			sourceTree = "<group>";
-		};
-		BFEF787E1A40F0EF00BB6711 /* Connections */ = {
-			isa = PBXGroup;
-			children = (
-				BFEF787F1A40F10800BB6711 /* PHPeerConnection.h */,
-				BFEF78801A40F10800BB6711 /* PHPeerConnection.m */,
-				BFF253291A41514C007DBE23 /* PHMediaSession.h */,
-				BFF2532A1A41514C007DBE23 /* PHMediaSession.m */,
-				BF021E5E1A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.h */,
-				BF021E5F1A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.m */,
-				BFEC3DF41A6B7FC4005CE903 /* PHSessionDescriptionFactory.h */,
-				BFEC3DF51A6B7FC4005CE903 /* PHSessionDescriptionFactory.m */,
-				BF0206BC1AFC41D000C8160E /* PHMediaConfiguration.h */,
-				BF50AB891AFC831B00E56E34 /* PHMediaConfiguration.m */,
-			);
-			path = Connections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,39 +407,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF2532B1A41514C007DBE23 /* PHMediaSession.m in Sources */,
-				BF50AB8A1AFC831B00E56E34 /* PHMediaConfiguration.m in Sources */,
 				BF46904619DD3AD100B02945 /* XSMessage.m in Sources */,
-				BF3D94111A19B6ED0068C766 /* AVCaptureDevice+PHCapturePresets.m in Sources */,
-				BF83888119E90D4A007578A9 /* PHSampleBufferRenderer.m in Sources */,
-				BFC084F419DC976600B38772 /* PHQuartzVideoView.m in Sources */,
-				BF3D940B1A19B6A90068C766 /* PHCaptureManager.m in Sources */,
 				BF021E661A4E850B007E8F11 /* UIButton+PHButton.m in Sources */,
-				BF5DE2DC1AFEE6AC00664DCA /* PHConvert.m in Sources */,
 				BF46904719DD3AD100B02945 /* XSPeer.m in Sources */,
-				BF99485E1AF9F52C00B40D03 /* PHEAGLRenderer.m in Sources */,
-				BFEF78811A40F10800BB6711 /* PHPeerConnection.m in Sources */,
-				BF3D940E1A19B6C50068C766 /* PHCapturePreviewView.m in Sources */,
-				BFE4F53A1A43C1860075CDA5 /* UIDevice+PHDeviceAdditions.m in Sources */,
-				BF19FD8E1AFABF1B00719AA9 /* PHEAGLVideoViewContainer.m in Sources */,
-				BF19FD981AFADCCF00719AA9 /* PHVideoCaptureKit.mm in Sources */,
 				BF021E691A4E859E007E8F11 /* UIFont+Fonts.m in Sources */,
 				BFB053EF1A538A8F00AF1CBD /* PHMuteOverlayView.m in Sources */,
-				BFF8F592199616D50065A555 /* PHConnectionBroker.m in Sources */,
-				BFC084F319DC976600B38772 /* PHFrameConverter.m in Sources */,
-				BF83887E19E90B42007578A9 /* PHSampleBufferView.m in Sources */,
-				BF3D94171A19B7E00068C766 /* PHVideoPublisher.m in Sources */,
 				BF80C59C19960F54007DE967 /* PHAppDelegate.m in Sources */,
-				BFEC3DF61A6B7FC4005CE903 /* PHSessionDescriptionFactory.m in Sources */,
 				BF0206BB1AFC376A00C8160E /* PHSettingsViewController.m in Sources */,
 				BF46904819DD3AD100B02945 /* XSPeerClient.m in Sources */,
+				BF1A8A0E1C4352FE00E1286E /* PHConnectionBroker.m in Sources */,
+				BF1A8A0F1C4352FE00E1286E /* PHErrors.m in Sources */,
 				BF021E631A4E84CD007E8F11 /* PHViewController.m in Sources */,
-				BF3F17B11A52895300443D52 /* PHAudioSessionController.m in Sources */,
-				4BCFC5BF1A5215A800DFC4B8 /* PHErrors.m in Sources */,
 				BF80C59819960F54007DE967 /* main.m in Sources */,
 				BF46904919DD3AD100B02945 /* XSRoom.m in Sources */,
-				BF021E601A4E84B1007E8F11 /* RTCMediaStream+PHStreamConfiguration.m in Sources */,
-				BF19FD971AFADCCF00719AA9 /* PHVideoCaptureBridge.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

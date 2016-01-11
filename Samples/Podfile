@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+inhibit_all_warnings!
+platform :ios, '8.1'
+
+pod 'nighthawk-webrtc', :podspec => './../PerchRTC/nighthawk-webrtc-chrome-m45-capture-xcode.podspec'
+pod 'CocoaLumberjack', '1.9.1'
+pod 'PerchRTC', :path => './../'
+pod 'XirSys', :git => 'https://github.com/samsymons/XirSys.git', :tag => '0.4'
+pod 'SocketRocket', :git => 'https://github.com/square/SocketRocket.git', :commit => 'd1e796c05a8b6dfa662a7cf3cfdce17d0d88c618'
+pod 'AFNetworking/Reachability'
+
+link_with 'PerchRTC', 'PerchRTCTests'
