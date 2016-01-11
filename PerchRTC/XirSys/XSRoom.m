@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableDictionary *mutableRoomPeers;
 @property (nonatomic, assign, getter = isJoined) BOOL joined;
 @property (nonatomic, copy) NSString *authToken;
+@property (nonatomic, copy) NSURL *serverURL;
 
 @end
 
@@ -74,11 +75,13 @@
     [self.mutableRoomObservers removeObject:observerValue];
 }
 
-- (void)authorizeWithToken:(NSString *)authToken
+- (void)authorizeWithToken:(NSString *)authToken url:(NSURL *)serverURL
 {
     NSParameterAssert(authToken);
+    NSParameterAssert(serverURL);
 
     self.authToken = authToken;
+    self.serverURL = serverURL;
 }
 
 - (void)clearAuthorizationToken
